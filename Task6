@@ -1,0 +1,25 @@
+public class caseAssignment {
+    public static void getQueues(List<Case> listCase){
+        list<Group> groupDetail =[select id,name from Group where Type = 'Queue'];
+        Id newCaseOwner;
+        map<id,Integer> maplist= new map<id,Integer>();
+        for(group g : groupDetail)
+        {
+            system.debug('Name: ' +g.name + ' ID: '+g.Id);
+            list<Case> getCaseOwner =[Select id,OwnerId from case where OwnerId = : g.id];
+            maplist.put(g.Id, getCaseOwner.size());
+            system.debug('maplist'+maplist);
+            String minSize;
+            for(case c :getCaseOwner){
+                for(String abc:maplist.keyset())
+                    if(minSize == null||maplist.get(abc) < maplist.get(abc))
+                    minSize=abc;
+                system.debug('minSize:== '+minSize);
+                newCaseOwner = minSize;
+            }
+        }
+        for(case casetobeUpdate : listCase){
+            casetobeUpdate.OwnerId = newCaseOwner;
+        }
+    }
+}
